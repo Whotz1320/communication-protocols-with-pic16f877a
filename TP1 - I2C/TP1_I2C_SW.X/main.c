@@ -22,29 +22,20 @@ void Start_Bit() {
     PIR1bits.SSPIF = 0;
 }
 
-void Send_Byte_Data(uint8_t data) {
-    SSPBUF = data;
-    while (!PIR1bits.SSPIF);
-    PIR1bits.SSPIF = 0;
-}
-
 void main(void) {
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
     PIR1bits.SSPIF = 0;
 
-    TRISCbits.TRISC3 = 0;
-    TRISCbits.TRISC4 = 0;
+    TRISCbits.TRISC3 = 0;       /* SCL LINE AS OUTPUT */
+    TRISCbits.TRISC4 = 0;       /* SDA LINE AS OUTPUT */
 
     int clock_init_value = 49;
     I2C_Init(clock_init_value);
 
     while (1) {
-        Start_Bit();
-        Send_Byte_Data(0x5A);
-        TRISCbits.TRISC4 = 1;
-
+        Start_Bit();            /* SEND THE START BIT CONDITION */
         __delay_ms(20);
     }
 

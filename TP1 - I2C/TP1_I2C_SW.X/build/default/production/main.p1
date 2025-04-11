@@ -27,9 +27,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "549
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 549: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
 [v _PIR1bits `VS24 ~T0 @X0 0 e@12 ]
-"808
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 808: extern volatile unsigned char SSPBUF __attribute__((address(0x013)));
-[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
 [p mainexit ]
 "460
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 460:     struct {
@@ -260,39 +257,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 10: 
 [p x CPD  =  OFF ]
 "11
-[; ;main.c: 11: void Send_Byte_Data(uint8_t data) {
+[; ;main.c: 11: void main(void) {
 [p x WRT  =  OFF ]
 "12
-[; ;main.c: 12:     SSPBUF = data;
+[; ;main.c: 12:     INTCONbits.GIE = 1;
 [p x CP  =  OFF ]
 "14
-[; ;main.c: 14:     PIR1bits.SSPIF = 0;
+[; ;main.c: 14: 
 [v _I2C_Init `(v ~T0 @X0 1 ef1`i ]
 {
 [e :U _I2C_Init ]
 [v _clock_init_value `i ~T0 @X0 1 r1 ]
 [f ]
 "15
-[; ;main.c: 15: }
+[; ;main.c: 15:     PIR1bits.SSPIF = 0;
 [e = _SSPADD -> _clock_init_value `uc ]
 "16
 [; ;main.c: 16: 
 [e = _SSPCON -> -> 40 `i `uc ]
 "17
-[; ;main.c: 17: void main(void) {
+[; ;main.c: 17:     TRISCbits.TRISC3 = 0;
 [e :UE 99 ]
 }
 "19
-[; ;main.c: 19:     INTCONbits.PEIE = 1;
+[; ;main.c: 19: 
 [v _Start_Bit `(v ~T0 @X0 1 ef ]
 {
 [e :U _Start_Bit ]
 [f ]
 "20
-[; ;main.c: 20: 
+[; ;main.c: 20:     int clock_init_value = 49;
 [e = . . _SSPCON2bits 0 0 -> -> 1 `i `uc ]
 "21
-[; ;main.c: 21:     PIR1bits.SSPIF = 0;
+[; ;main.c: 21:     I2C_Init(clock_init_value);
 [e $U 101  ]
 [e :U 102 ]
 [e :U 101 ]
@@ -302,78 +299,48 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 22: 
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
 "23
-[; ;main.c: 23:     TRISCbits.TRISC3 = 0;
+[; ;main.c: 23:     while (1) {
 [e :UE 100 ]
 }
-"25
-[; ;main.c: 25: 
-[v _Send_Byte_Data `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _Send_Byte_Data ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-"26
-[; ;main.c: 26:     int clock_init_value = 49;
-[e = _SSPBUF _data ]
-"27
-[; ;main.c: 27:     I2C_Init(clock_init_value);
-[e $U 105  ]
-[e :U 106 ]
-[e :U 105 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 106  ]
-[e :U 107 ]
-"28
-[; ;main.c: 28: 
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"29
-[; ;main.c: 29:     while (1) {
-[e :UE 104 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"31
-[; ;main.c: 31:         Send_Byte_Data(0x5A);
+"25
+[; ;main.c: 25:         _delay((unsigned long)((20)*(20000000/4000.0)));
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"32
-[; ;main.c: 32:         TRISCbits.TRISC4 = 1;
+"26
+[; ;main.c: 26:     }
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"33
-[; ;main.c: 33: 
+"27
+[; ;main.c: 27: 
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"35
-[; ;main.c: 35:     }
+"29
+[; ;main.c: 29: }
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"37
-[; ;main.c: 37:     return;
+"31
 [e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-"38
-[; ;main.c: 38: }
+"32
 [e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
-"40
+"34
 [v _clock_init_value `i ~T0 @X0 1 a ]
 [e = _clock_init_value -> 49 `i ]
-"41
+"35
 [e ( _I2C_Init (1 _clock_init_value ]
-"43
-[e :U 110 ]
+"37
+[e :U 106 ]
 {
-"44
+"38
 [e ( _Start_Bit ..  ]
-"45
-[e ( _Send_Byte_Data (1 -> -> 90 `i `uc ]
-"46
-[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
-"48
+"39
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"49
+"40
 }
-[e :U 109 ]
-[e $U 110  ]
-[e :U 111 ]
-"51
-[e $UE 108  ]
-"52
-[e :UE 108 ]
+[e :U 105 ]
+[e $U 106  ]
+[e :U 107 ]
+"42
+[e $UE 104  ]
+"43
+[e :UE 104 ]
 }

@@ -1920,12 +1920,6 @@ void Start_Bit() {
     PIR1bits.SSPIF = 0;
 }
 
-void Send_Byte_Data(uint8_t data) {
-    SSPBUF = data;
-    while (!PIR1bits.SSPIF);
-    PIR1bits.SSPIF = 0;
-}
-
 void main(void) {
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
@@ -1940,9 +1934,6 @@ void main(void) {
 
     while (1) {
         Start_Bit();
-        Send_Byte_Data(0x5A);
-        TRISCbits.TRISC4 = 1;
-
         _delay((unsigned long)((20)*(20000000/4000.0)));
     }
 
