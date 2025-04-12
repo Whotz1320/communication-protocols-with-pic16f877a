@@ -1909,6 +1909,10 @@ extern __bank0 __bit __timeout;
 #pragma config WRT = OFF
 #pragma config CP = OFF
 
+
+
+
+
 void I2C_Init(int);
 void Start_Bit(void);
 void Repeated_Start(void);
@@ -1918,9 +1922,26 @@ void Send_ACK_Bit(void);
 void Send_NACK_Bit(void);
 void Stop_Bit(void);
 
+void LCD_Init(void);
+void LCD_Print_Byte(unsigned char);
+void LCD_Print_Bytes(const unsigned char *, unsigned char);
+void LCD_Control(unsigned char);
+
 void main(void) {
+    TRISBbits.TRISB3 = 0;
+    TRISBbits.TRISB4 = 0;
+    TRISBbits.TRISB5 = 0;
+    TRISD = 0x00;
+
     TRISCbits.TRISC3 = 1;
     TRISCbits.TRISC4 = 1;
+
+    LCD_Init();
+
+    LCD_Control(0x80);
+    LCD_Print_Bytes((const unsigned char *)"Send: ", 6);
+    LCD_Control(0xC0);
+    LCD_Print_Bytes((const unsigned char *)"Receive: ", 9);
 
     int clock_init_value = 49;
     I2C_Init(clock_init_value);
@@ -1941,6 +1962,11 @@ void main(void) {
         Send_Byte_Data(data_to_write);
         Stop_Bit();
 
+        LCD_Control(0x86);
+        if (data_to_write >= 100) LCD_Print_Byte((data_to_write / 100) + '0');
+        if (data_to_write >= 10) LCD_Print_Byte(((data_to_write / 10) % 10) + '0');
+        LCD_Print_Byte((data_to_write % 10) + '0');
+
         _delay((unsigned long)((1000)*(20000000/4000.0)));
 
         Start_Bit();
@@ -1954,6 +1980,11 @@ void main(void) {
         Send_NACK_Bit();
         Stop_Bit();
 
+        LCD_Control(0xC9);
+        if (received_data >= 100) LCD_Print_Byte((received_data / 100) + '0');
+        if (received_data >= 10) LCD_Print_Byte(((received_data / 10) % 10) + '0');
+        LCD_Print_Byte((received_data % 10) + '0');
+
         data_to_write++;
         _delay((unsigned long)((1000)*(20000000/4000.0)));
     }
@@ -1965,19 +1996,16 @@ void I2C_Init(int clock_init_value) {
     SSPADD = (unsigned char)clock_init_value;
     SSPCON = 0x28;
 }
-
 void Start_Bit() {
     SSPCON2bits.SEN = 1;
     while (SSPCON2bits.SEN);
     PIR1bits.SSPIF = 0;
 }
-
 void Repeated_Start() {
     SSPCON2bits.RSEN = 1;
     while (SSPCON2bits.RSEN);
     PIR1bits.SSPIF = 0;
 }
-
 void Send_Byte_Data(uint8_t data) {
     SSPBUF = data;
     while (!PIR1bits.SSPIF);
@@ -1987,27 +2015,52 @@ void Send_Byte_Data(uint8_t data) {
         Stop_Bit();
     }
 }
-
 uint8_t Receive_Byte_Data() {
     SSPCON2bits.RCEN = 1;
     while (!SSPSTATbits.BF);
     return SSPBUF;
 }
-
 void Send_ACK_Bit() {
     SSPCON2bits.ACKDT = 0;
     SSPCON2bits.ACKEN = 1;
     while (SSPCON2bits.ACKEN);
 }
-
 void Send_NACK_Bit() {
     SSPCON2bits.ACKDT = 1;
     SSPCON2bits.ACKEN = 1;
     while (SSPCON2bits.ACKEN);
 }
-
 void Stop_Bit() {
     SSPCON2bits.PEN = 1;
     while (SSPCON2bits.PEN);
     PIR1bits.SSPIF = 0;
+}
+
+void LCD_Init() {
+    LCD_Control(0x38);
+    LCD_Control(0x06);
+    LCD_Control(0x0C);
+    LCD_Control(0x01);
+}
+void LCD_Print_Byte(unsigned char data) {
+    PORTBbits.RB5 = 1;
+    PORTBbits.RB3 = 1;
+    PORTBbits.RB4 = 0;
+    PORTD = data;
+    _delay((unsigned long)((5)*(20000000/4000.0)));
+    PORTBbits.RB5 = 0;
+}
+void LCD_Print_Bytes(const unsigned char *str, unsigned char len) {
+    unsigned char i;
+    for (i=0; i<len; ++i) {
+        LCD_Print_Byte(str[i]);
+    }
+}
+void LCD_Control(unsigned char cmd) {
+    PORTBbits.RB5 = 1;
+    PORTBbits.RB3 = 0;
+    PORTBbits.RB4 = 0;
+    PORTD = cmd;
+    _delay((unsigned long)((5)*(20000000/4000.0)));
+    PORTBbits.RB5 = 0;
 }
