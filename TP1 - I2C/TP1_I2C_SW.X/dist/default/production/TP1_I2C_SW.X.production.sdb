@@ -13,19 +13,21 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "23 C:\Users\Choaib ELMADI\Documents\ENSA\GE-2\S4\Protocoles de Communication Embarqués\TP\TP1 - I2C\TP1_I2C_SW.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"61
-[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
 "66
+[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
+"71
 [v _Start_Bit Start_Bit `(v  1 e 1 0 ]
-"78
+"77
+[v _Repeated_Start Repeated_Start `(v  1 e 1 0 ]
+"83
 [v _Send_Byte_Data Send_Byte_Data `(v  1 e 1 0 ]
-"88
+"93
 [v _Receive_Byte_Data Receive_Byte_Data `(uc  1 e 1 0 ]
-"101
+"105
 [v _Send_NACK_Bit Send_NACK_Bit `(v  1 e 1 0 ]
-"107
+"111
 [v _Stop_Bit Stop_Bit `(v  1 e 1 0 ]
-[s S98 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S102 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -35,8 +37,8 @@
 `uc 1 PSPIF 1 0 :1:7 
 ]
 "549 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
-[u S107 . 1 `S98 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES107  1 e 1 @12 ]
+[u S111 . 1 `S102 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES111  1 e 1 @12 ]
 "808
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "815
@@ -53,7 +55,7 @@
 "1454
 [u S31 . 1 `S22 1 . 1 0 ]
 [v _TRISCbits TRISCbits `VES31  1 e 1 @135 ]
-[s S77 . 1 `uc 1 SEN 1 0 :1:0 
+[s S81 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -63,11 +65,11 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1771
-[u S86 . 1 `S77 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES86  1 e 1 @145 ]
+[u S90 . 1 `S81 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES90  1 e 1 @145 ]
 "1823
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
-[s S120 . 1 `uc 1 BF 1 0 :1:0 
+[s S124 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -77,79 +79,90 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "1884
-[s S129 . 1 `uc 1 . 1 0 :2:0 
+[s S133 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S134 . 1 `uc 1 . 1 0 :2:0 
+[s S138 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S140 . 1 `uc 1 . 1 0 :2:0 
+[s S144 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S145 . 1 `uc 1 . 1 0 :2:0 
+[s S149 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S150 . 1 `uc 1 . 1 0 :2:0 
+[s S154 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S155 . 1 `uc 1 . 1 0 :2:0 
+[s S159 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S160 . 1 `S120 1 . 1 0 `S129 1 . 1 0 `S134 1 . 1 0 `S140 1 . 1 0 `S145 1 . 1 0 `S150 1 . 1 0 `S155 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES160  1 e 1 @148 ]
+[u S164 . 1 `S124 1 . 1 0 `S133 1 . 1 0 `S138 1 . 1 0 `S144 1 . 1 0 `S149 1 . 1 0 `S154 1 . 1 0 `S159 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES164  1 e 1 @148 ]
 "23 C:\Users\Choaib ELMADI\Documents\ENSA\GE-2\S4\Protocoles de Communication Embarqués\TP\TP1 - I2C\TP1_I2C_SW.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
+"33
+[v main@memor_address_l memor_address_l `uc  1 a 1 9 ]
+"32
+[v main@memor_address_h memor_address_h `uc  1 a 1 8 ]
 "30
-[v main@write_data write_data `uc  1 a 1 5 ]
-"59
+[v main@slave_address_w slave_address_w `uc  1 a 1 7 ]
+"35
+[v main@data_to_write data_to_write `uc  1 a 1 6 ]
+"31
+[v main@slave_address_r slave_address_r `uc  1 a 1 5 ]
+"64
 } 0
-"66
+"71
 [v _Start_Bit Start_Bit `(v  1 e 1 0 ]
 {
-"70
+"75
 } 0
-"101
+"105
 [v _Send_NACK_Bit Send_NACK_Bit `(v  1 e 1 0 ]
 {
-"105
+"109
 } 0
-"78
+"83
 [v _Send_Byte_Data Send_Byte_Data `(v  1 e 1 0 ]
 {
 [v Send_Byte_Data@data data `uc  1 a 1 wreg ]
 [v Send_Byte_Data@data data `uc  1 a 1 wreg ]
 [v Send_Byte_Data@data data `uc  1 a 1 0 ]
-"86
+"91
 } 0
-"107
+"111
 [v _Stop_Bit Stop_Bit `(v  1 e 1 0 ]
 {
-"111
+"115
 } 0
-"88
+"77
+[v _Repeated_Start Repeated_Start `(v  1 e 1 0 ]
+{
+"81
+} 0
+"93
 [v _Receive_Byte_Data Receive_Byte_Data `(uc  1 e 1 0 ]
 {
-"91
-[v Receive_Byte_Data@data data `uc  1 a 1 0 ]
-"93
+"97
 } 0
-"61
+"66
 [v _I2C_Init I2C_Init `(v  1 e 1 0 ]
 {
 [v I2C_Init@clock_init_value clock_init_value `i  1 p 2 0 ]
-"64
+"69
 } 0

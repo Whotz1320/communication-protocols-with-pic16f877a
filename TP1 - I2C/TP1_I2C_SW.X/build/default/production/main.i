@@ -1925,31 +1925,36 @@ void main(void) {
     int clock_init_value = 49;
     I2C_Init(clock_init_value);
 
-    uint8_t write_data = 0x33;
-    uint8_t data = 0;
+    uint8_t slave_address_w = 0b10100000;
+    uint8_t slave_address_r = 0b10100001;
+    uint8_t memor_address_h = 0x11;
+    uint8_t memor_address_l = 0x01;
+
+    uint8_t data_to_write = 0x00;
+    uint8_t received_data = 0x00;
 
     while (1) {
         Start_Bit();
-        Send_Byte_Data(0b10100000);
-        Send_Byte_Data(0x00);
-        Send_Byte_Data(0x01);
-        Send_Byte_Data(write_data);
+        Send_Byte_Data(slave_address_w);
+        Send_Byte_Data(memor_address_h);
+        Send_Byte_Data(memor_address_l);
+        Send_Byte_Data(data_to_write);
         Stop_Bit();
 
-        _delay((unsigned long)((10)*(20000000/4000.0)));
+        _delay((unsigned long)((1000)*(20000000/4000.0)));
 
         Start_Bit();
-        Send_Byte_Data(0b10100000);
-        Send_Byte_Data(0x00);
-        Send_Byte_Data(0x01);
+        Send_Byte_Data(slave_address_w);
+        Send_Byte_Data(memor_address_h);
+        Send_Byte_Data(memor_address_l);
 
-        Start_Bit();
-        Send_Byte_Data(0b10100001);
-        data = Receive_Byte_Data();
+        Repeated_Start();
+        Send_Byte_Data(slave_address_r);
+        received_data = Receive_Byte_Data();
         Send_NACK_Bit();
         Stop_Bit();
 
-        write_data++;
+        data_to_write++;
         _delay((unsigned long)((1000)*(20000000/4000.0)));
     }
 
@@ -1986,8 +1991,7 @@ void Send_Byte_Data(uint8_t data) {
 uint8_t Receive_Byte_Data() {
     SSPCON2bits.RCEN = 1;
     while (!SSPSTATbits.BF);
-    uint8_t data = SSPBUF;
-    return data;
+    return SSPBUF;
 }
 
 void Send_ACK_Bit() {
