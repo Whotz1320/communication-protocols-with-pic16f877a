@@ -12,27 +12,26 @@
 #pragma config CP = OFF
 
 void I2C_Init(int);
-void Start_Bit();
+void Start_Bit(void);
+void Repeated_Start(void);
 void Send_Byte_Data(uint8_t);
-void Send_ACK_Bit();
-void Send_NACK_Bit();
-void Stop_Bit();
+uint8_t Receive_Byte_Data(void);
+void Send_ACK_Bit(void);
+void Send_NACK_Bit(void);
+void Stop_Bit(void);
 
 void main(void) {
-    TRISCbits.TRISC3 = 1;           // SCL as input
-    TRISCbits.TRISC4 = 1;           // SDA as input
+    TRISCbits.TRISC3 = 1;               // SCL as input
+    TRISCbits.TRISC4 = 1;               // SDA as input
 
-    int clock_init_value = 49;      // For 100kHz baud-rate
+    int clock_init_value = 49;          // For 100kHz baud-rate
     I2C_Init(clock_init_value);
 
+    uint8_t set_data = 0x00;
+    uint8_t get_data = 0x00;
+
     while (1) {
-        Start_Bit();                // Start bit condition
-
-        Send_Byte_Data(0b10100000); // Slave address with write bit
-
-        Stop_Bit();                 // Stop bit condition
-
-        __delay_ms(1000);
+        
     }
 
     return;
@@ -45,34 +44,46 @@ void I2C_Init(int clock_init_value) {
 
 void Start_Bit() {
     SSPCON2bits.SEN = 1;
-    while (SSPCON2bits.SEN);        // Cleared automatically
+    while (SSPCON2bits.SEN);            // Cleared automatically
+    PIR1bits.SSPIF = 0;
+}
+
+void Repeated_Start() {
+    SSPCON2bits.RSEN = 1;
+    while (SSPCON2bits.RSEN);           // Cleared automatically
     PIR1bits.SSPIF = 0;
 }
 
 void Send_Byte_Data(uint8_t data) {
     SSPBUF = data;
-    while (!PIR1bits.SSPIF);        // Set automatically
+    while (!PIR1bits.SSPIF);            // Set automatically
     PIR1bits.SSPIF = 0;
 
-    if (SSPCON2bits.ACKSTAT) {      // No ACK
+    if (SSPCON2bits.ACKSTAT) {          // No ACK
         Stop_Bit();
     }
 }
 
+uint8_t Receive_Byte_Data() {
+    SSPCON2bits.RCEN = 1;
+    while (!SSPSTATbits.BF);            // Set automatically
+    return SSPBUF;
+}
+
 void Send_ACK_Bit() {
-    SSPCON2bits.ACKEN = 1;
     SSPCON2bits.ACKDT = 0;
-    while (SSPCON2bits.ACKEN);      // Cleared automatically
+    SSPCON2bits.ACKEN = 1;
+    while (SSPCON2bits.ACKEN);          // Cleared automatically
 }
 
 void Send_NACK_Bit() {
-    SSPCON2bits.ACKEN = 1;
     SSPCON2bits.ACKDT = 1;
-    while (SSPCON2bits.ACKEN);      // Cleared automatically
+    SSPCON2bits.ACKEN = 1;
+    while (SSPCON2bits.ACKEN);          // Cleared automatically
 }
 
 void Stop_Bit() {
     SSPCON2bits.PEN = 1;
-    while (SSPCON2bits.PEN);        // Cleared automatically
+    while (SSPCON2bits.PEN);            // Cleared automatically
     PIR1bits.SSPIF = 0;
 }

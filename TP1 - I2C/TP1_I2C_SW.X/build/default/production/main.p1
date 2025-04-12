@@ -12,21 +12,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1454: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x087)));
 [v _TRISCbits `VS61 ~T0 @X0 0 e@135 ]
 "14 main.c
-[; ;main.c: 14:     while (1) {
+[; ;main.c: 14:     I2C_Init(clock_init_value);
 [v _I2C_Init `(v ~T0 @X0 0 ef1`i ]
 "15
-[; ;main.c: 15:         Start_Bit();
-[v _Start_Bit `(v ~T0 @X0 0 e? ]
-"16
-[; ;main.c: 16: 
+[; ;main.c: 15: 
+[v _Start_Bit `(v ~T0 @X0 0 ef ]
+"17
+[; ;main.c: 17:     uint8_t data = 0;
 [v _Send_Byte_Data `(v ~T0 @X0 0 ef1`uc ]
-"19
-[; ;main.c: 19:         Stop_Bit();
-[v _Stop_Bit `(v ~T0 @X0 0 e? ]
+"21
+[; ;main.c: 21:         Send_Byte_Data(0b10100000);
+[v _Stop_Bit `(v ~T0 @X0 0 ef ]
 [v F164 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\builtins.h
 [v __delay `JF164 ~T0 @X0 0 e ]
 [p i __delay ]
+"18 main.c
+[; ;main.c: 18: 
+[v _Receive_Byte_Data `(uc ~T0 @X0 0 ef ]
+"20
+[; ;main.c: 20:         Start_Bit();
+[v _Send_NACK_Bit `(v ~T0 @X0 0 ef ]
 "1823 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1823: extern volatile unsigned char SSPADD __attribute__((address(0x093)));
 [v _SSPADD `Vuc ~T0 @X0 0 e@147 ]
@@ -58,6 +64,41 @@ Version 4.0 HI-TECH Software Intermediate Code
 "808
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 808: extern volatile unsigned char SSPBUF __attribute__((address(0x013)));
 [v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
+"1836
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1836:     struct {
+[s S77 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S77 . BF UA R_nW S P D_nA CKE SMP ]
+"1846
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1846:     struct {
+[s S78 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S78 . . R . D ]
+"1852
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1852:     struct {
+[s S79 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S79 . . I2C_READ I2C_START I2C_STOP I2C_DATA ]
+"1859
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1859:     struct {
+[s S80 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S80 . . nW . nA ]
+"1865
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1865:     struct {
+[s S81 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S81 . . nWRITE . nADDRESS ]
+"1871
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1871:     struct {
+[s S82 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S82 . . R_W . D_A ]
+"1877
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1877:     struct {
+[s S83 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S83 . . READ_WRITE . DATA_ADDRESS ]
+"1835
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1835: typedef union {
+[u S76 `S77 1 `S78 1 `S79 1 `S80 1 `S81 1 `S82 1 `S83 1 ]
+[n S76 . . . . . . . . ]
+"1884
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 1884: extern volatile SSPSTATbits_t SSPSTATbits __attribute__((address(0x094)));
+[v _SSPSTATbits `VS76 ~T0 @X0 0 e@148 ]
 "54 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -239,207 +280,308 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC16Fxxx_DFP/1.4.149/xc8\pic\include\proc\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "5 main.c
-[; ;main.c: 5: void Stop_Bit();
+[; ;main.c: 5: void Send_ACK_Bit(void);
 [p x FOSC  =  HS ]
 "6
-[; ;main.c: 6: 
+[; ;main.c: 6: void Send_NACK_Bit(void);
 [p x WDTE  =  OFF ]
 "7
-[; ;main.c: 7: void main(void) {
+[; ;main.c: 7: void Stop_Bit(void);
 [p x PWRTE  =  OFF ]
 "8
-[; ;main.c: 8:     TRISCbits.TRISC3 = 1;
+[; ;main.c: 8: 
 [p x BOREN  =  OFF ]
 "9
-[; ;main.c: 9:     TRISCbits.TRISC4 = 1;
+[; ;main.c: 9: void main(void) {
 [p x LVP  =  ON ]
 "10
-[; ;main.c: 10: 
+[; ;main.c: 10:     TRISCbits.TRISC3 = 1;
 [p x CPD  =  OFF ]
 "11
-[; ;main.c: 11:     int clock_init_value = 49;
+[; ;main.c: 11:     TRISCbits.TRISC4 = 1;
 [p x WRT  =  OFF ]
 "12
-[; ;main.c: 12:     I2C_Init(clock_init_value);
+[; ;main.c: 12: 
 [p x CP  =  OFF ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"21
-[; ;main.c: 21:         _delay((unsigned long)((1000)*(20000000/4000.0)));
+"23
+[; ;main.c: 23:         Send_Byte_Data(0x01);
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"22
-[; ;main.c: 22:     }
+"24
+[; ;main.c: 24:         Send_Byte_Data(write_data);
 [e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
-"23
-[; ;main.c: 23: 
-[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
 "25
-[; ;main.c: 25: }
+[; ;main.c: 25:         Stop_Bit();
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+"27
+[; ;main.c: 27:         _delay((unsigned long)((10)*(20000000/4000.0)));
 [v _clock_init_value `i ~T0 @X0 1 a ]
 [e = _clock_init_value -> 49 `i ]
-"26
-[; ;main.c: 26: 
-[e ( _I2C_Init (1 _clock_init_value ]
 "28
-[; ;main.c: 28:     SSPADD = (unsigned char)clock_init_value;
+[; ;main.c: 28: 
+[e ( _I2C_Init (1 _clock_init_value ]
+"30
+[; ;main.c: 30:         Send_Byte_Data(0b10100000);
+[v _write_data `uc ~T0 @X0 1 a ]
+[e = _write_data -> -> 51 `i `uc ]
+"31
+[; ;main.c: 31:         Send_Byte_Data(0x00);
+[v _data `uc ~T0 @X0 1 a ]
+[e = _data -> -> 0 `i `uc ]
+"33
+[; ;main.c: 33: 
 [e :U 101 ]
 {
-"29
-[; ;main.c: 29:     SSPCON = 0x28;
+"34
+[; ;main.c: 34:         Start_Bit();
 [e ( _Start_Bit ..  ]
-"31
-[; ;main.c: 31: 
-[e ( _Send_Byte_Data (1 -> -> 160 `i `uc ]
-"33
-[; ;main.c: 33:     SSPCON2bits.SEN = 1;
-[e ( _Stop_Bit ..  ]
 "35
-[; ;main.c: 35:     PIR1bits.SSPIF = 0;
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;main.c: 35:         Send_Byte_Data(0b10100001);
+[e ( _Send_Byte_Data (1 -> -> 160 `i `uc ]
 "36
-[; ;main.c: 36: }
+[; ;main.c: 36:         data = Receive_Byte_Data();
+[e ( _Send_Byte_Data (1 -> -> 0 `i `uc ]
+"37
+[; ;main.c: 37:         Send_NACK_Bit();
+[e ( _Send_Byte_Data (1 -> -> 1 `i `uc ]
+"38
+[; ;main.c: 38:         Stop_Bit();
+[e ( _Send_Byte_Data (1 _write_data ]
+"39
+[; ;main.c: 39: 
+[e ( _Stop_Bit ..  ]
+"41
+[; ;main.c: 41:         _delay((unsigned long)((1000)*(20000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"43
+[; ;main.c: 43: 
+[e ( _Start_Bit ..  ]
+"44
+[; ;main.c: 44:     return;
+[e ( _Send_Byte_Data (1 -> -> 160 `i `uc ]
+"45
+[; ;main.c: 45: }
+[e ( _Send_Byte_Data (1 -> -> 0 `i `uc ]
+"46
+[; ;main.c: 46: 
+[e ( _Send_Byte_Data (1 -> -> 1 `i `uc ]
+"48
+[; ;main.c: 48:     SSPADD = (unsigned char)clock_init_value;
+[e ( _Start_Bit ..  ]
+"49
+[; ;main.c: 49:     SSPCON = 0x28;
+[e ( _Send_Byte_Data (1 -> -> 161 `i `uc ]
+"50
+[; ;main.c: 50: }
+[e = _data ( _Receive_Byte_Data ..  ]
+"51
+[; ;main.c: 51: 
+[e ( _Send_NACK_Bit ..  ]
+"52
+[; ;main.c: 52: void Start_Bit() {
+[e ( _Stop_Bit ..  ]
+"54
+[; ;main.c: 54:     while (SSPCON2bits.SEN);
+[e ++ _write_data -> -> 1 `i `uc ]
+"55
+[; ;main.c: 55:     PIR1bits.SSPIF = 0;
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"56
+[; ;main.c: 56: }
 }
 [e :U 100 ]
 [e $U 101  ]
 [e :U 102 ]
-"38
-[; ;main.c: 38: void Send_Byte_Data(uint8_t data) {
+"58
+[; ;main.c: 58: void Repeated_Start() {
 [e $UE 99  ]
-"39
-[; ;main.c: 39:     SSPBUF = data;
+"59
+[; ;main.c: 59:     SSPCON2bits.RSEN = 1;
 [e :UE 99 ]
 }
-"41
-[; ;main.c: 41:     PIR1bits.SSPIF = 0;
+"61
+[; ;main.c: 61:     PIR1bits.SSPIF = 0;
 [v _I2C_Init `(v ~T0 @X0 1 ef1`i ]
 {
 [e :U _I2C_Init ]
 [v _clock_init_value `i ~T0 @X0 1 r1 ]
 [f ]
-"42
-[; ;main.c: 42: 
+"62
+[; ;main.c: 62: }
 [e = _SSPADD -> _clock_init_value `uc ]
-"43
-[; ;main.c: 43:     if (SSPCON2bits.ACKSTAT) {
+"63
+[; ;main.c: 63: 
 [e = _SSPCON -> -> 40 `i `uc ]
-"44
-[; ;main.c: 44:         Stop_Bit();
+"64
+[; ;main.c: 64: void Send_Byte_Data(uint8_t data) {
 [e :UE 103 ]
 }
-"46
-[; ;main.c: 46: }
+"66
+[; ;main.c: 66:     while (!PIR1bits.SSPIF);
 [v _Start_Bit `(v ~T0 @X0 1 ef ]
 {
 [e :U _Start_Bit ]
 [f ]
-"47
-[; ;main.c: 47: 
+"67
+[; ;main.c: 67:     PIR1bits.SSPIF = 0;
 [e = . . _SSPCON2bits 0 0 -> -> 1 `i `uc ]
-"48
-[; ;main.c: 48: void Send_ACK_Bit() {
+"68
+[; ;main.c: 68: 
 [e $U 105  ]
 [e :U 106 ]
 [e :U 105 ]
 [e $ != -> . . _SSPCON2bits 0 0 `i -> 0 `i 106  ]
 [e :U 107 ]
-"49
-[; ;main.c: 49:     SSPCON2bits.ACKEN = 1;
+"69
+[; ;main.c: 69:     if (SSPCON2bits.ACKSTAT) {
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"50
-[; ;main.c: 50:     SSPCON2bits.ACKDT = 0;
+"70
+[; ;main.c: 70:         Stop_Bit();
 [e :UE 104 ]
 }
-"52
-[; ;main.c: 52: }
+"72
+[; ;main.c: 72: }
+[v _Repeated_Start `(v ~T0 @X0 1 ef ]
+{
+[e :U _Repeated_Start ]
+[f ]
+"73
+[; ;main.c: 73: 
+[e = . . _SSPCON2bits 0 1 -> -> 1 `i `uc ]
+"74
+[; ;main.c: 74: uint8_t Receive_Byte_Data() {
+[e $U 109  ]
+[e :U 110 ]
+[e :U 109 ]
+[e $ != -> . . _SSPCON2bits 0 1 `i -> 0 `i 110  ]
+[e :U 111 ]
+"75
+[; ;main.c: 75:     SSPCON2bits.RCEN = 1;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"76
+[; ;main.c: 76:     while (!SSPSTATbits.BF);
+[e :UE 108 ]
+}
+"78
+[; ;main.c: 78:     return data;
 [v _Send_Byte_Data `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _Send_Byte_Data ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-"53
-[; ;main.c: 53: 
+"79
+[; ;main.c: 79: }
 [e = _SSPBUF _data ]
-"54
-[; ;main.c: 54: void Send_NACK_Bit() {
-[e $U 109  ]
-[e :U 110 ]
-[e :U 109 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 110  ]
-[e :U 111 ]
-"55
-[; ;main.c: 55:     SSPCON2bits.ACKEN = 1;
+"80
+[; ;main.c: 80: 
+[e $U 113  ]
+[e :U 114 ]
+[e :U 113 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 114  ]
+[e :U 115 ]
+"81
+[; ;main.c: 81: void Send_ACK_Bit() {
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"57
-[; ;main.c: 57:     while (SSPCON2bits.ACKEN);
-[e $ ! != -> . . _SSPCON2bits 0 6 `i -> 0 `i 112  ]
+"83
+[; ;main.c: 83:     SSPCON2bits.ACKEN = 1;
+[e $ ! != -> . . _SSPCON2bits 0 6 `i -> 0 `i 116  ]
 {
-"58
-[; ;main.c: 58: }
+"84
+[; ;main.c: 84:     while (SSPCON2bits.ACKEN);
 [e ( _Stop_Bit ..  ]
-"59
-[; ;main.c: 59: 
+"85
+[; ;main.c: 85: }
 }
-[e :U 112 ]
-"60
-[; ;main.c: 60: void Stop_Bit() {
-[e :UE 108 ]
+[e :U 116 ]
+"86
+[; ;main.c: 86: 
+[e :UE 112 ]
 }
-"62
-[; ;main.c: 62:     while (SSPCON2bits.PEN);
+"88
+[; ;main.c: 88:     SSPCON2bits.ACKDT = 1;
+[v _Receive_Byte_Data `(uc ~T0 @X0 1 ef ]
+{
+[e :U _Receive_Byte_Data ]
+[f ]
+"89
+[; ;main.c: 89:     SSPCON2bits.ACKEN = 1;
+[e = . . _SSPCON2bits 0 3 -> -> 1 `i `uc ]
+"90
+[; ;main.c: 90:     while (SSPCON2bits.ACKEN);
+[e $U 118  ]
+[e :U 119 ]
+[e :U 118 ]
+[e $ ! != -> . . _SSPSTATbits 0 0 `i -> 0 `i 119  ]
+[e :U 120 ]
+"91
+[; ;main.c: 91: }
+[v _data `uc ~T0 @X0 1 a ]
+[e = _data _SSPBUF ]
+"92
+[; ;main.c: 92: 
+[e ) _data ]
+[e $UE 117  ]
+"93
+[; ;main.c: 93: void Stop_Bit() {
+[e :UE 117 ]
+}
+"95
+[; ;main.c: 95:     while (SSPCON2bits.PEN);
 [v _Send_ACK_Bit `(v ~T0 @X0 1 ef ]
 {
 [e :U _Send_ACK_Bit ]
 [f ]
-"63
-[; ;main.c: 63:     PIR1bits.SSPIF = 0;
-[e = . . _SSPCON2bits 0 4 -> -> 1 `i `uc ]
-"64
-[; ;main.c: 64: }
+"96
+[; ;main.c: 96:     PIR1bits.SSPIF = 0;
 [e = . . _SSPCON2bits 0 5 -> -> 0 `i `uc ]
-"65
-[e $U 114  ]
-[e :U 115 ]
-[e :U 114 ]
-[e $ != -> . . _SSPCON2bits 0 4 `i -> 0 `i 115  ]
-[e :U 116 ]
-"66
-[e :UE 113 ]
+"97
+[; ;main.c: 97: }
+[e = . . _SSPCON2bits 0 4 -> -> 1 `i `uc ]
+"98
+[e $U 122  ]
+[e :U 123 ]
+[e :U 122 ]
+[e $ != -> . . _SSPCON2bits 0 4 `i -> 0 `i 123  ]
+[e :U 124 ]
+"99
+[e :UE 121 ]
 }
-"68
+"101
 [v _Send_NACK_Bit `(v ~T0 @X0 1 ef ]
 {
 [e :U _Send_NACK_Bit ]
 [f ]
-"69
-[e = . . _SSPCON2bits 0 4 -> -> 1 `i `uc ]
-"70
+"102
 [e = . . _SSPCON2bits 0 5 -> -> 1 `i `uc ]
-"71
-[e $U 118  ]
-[e :U 119 ]
-[e :U 118 ]
-[e $ != -> . . _SSPCON2bits 0 4 `i -> 0 `i 119  ]
-[e :U 120 ]
-"72
-[e :UE 117 ]
+"103
+[e = . . _SSPCON2bits 0 4 -> -> 1 `i `uc ]
+"104
+[e $U 126  ]
+[e :U 127 ]
+[e :U 126 ]
+[e $ != -> . . _SSPCON2bits 0 4 `i -> 0 `i 127  ]
+[e :U 128 ]
+"105
+[e :UE 125 ]
 }
-"74
+"107
 [v _Stop_Bit `(v ~T0 @X0 1 ef ]
 {
 [e :U _Stop_Bit ]
 [f ]
-"75
+"108
 [e = . . _SSPCON2bits 0 2 -> -> 1 `i `uc ]
-"76
-[e $U 122  ]
-[e :U 123 ]
-[e :U 122 ]
-[e $ != -> . . _SSPCON2bits 0 2 `i -> 0 `i 123  ]
-[e :U 124 ]
-"77
+"109
+[e $U 130  ]
+[e :U 131 ]
+[e :U 130 ]
+[e $ != -> . . _SSPCON2bits 0 2 `i -> 0 `i 131  ]
+[e :U 132 ]
+"110
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"78
-[e :UE 121 ]
+"111
+[e :UE 129 ]
 }

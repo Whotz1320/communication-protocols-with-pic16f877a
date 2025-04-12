@@ -1910,11 +1910,13 @@ extern __bank0 __bit __timeout;
 #pragma config CP = OFF
 
 void I2C_Init(int);
-void Start_Bit();
+void Start_Bit(void);
+void Repeated_Start(void);
 void Send_Byte_Data(uint8_t);
-void Send_ACK_Bit();
-void Send_NACK_Bit();
-void Stop_Bit();
+uint8_t Receive_Byte_Data(void);
+void Send_ACK_Bit(void);
+void Send_NACK_Bit(void);
+void Stop_Bit(void);
 
 void main(void) {
     TRISCbits.TRISC3 = 1;
@@ -1923,13 +1925,31 @@ void main(void) {
     int clock_init_value = 49;
     I2C_Init(clock_init_value);
 
+    uint8_t write_data = 0x33;
+    uint8_t data = 0;
+
     while (1) {
         Start_Bit();
-
         Send_Byte_Data(0b10100000);
-
+        Send_Byte_Data(0x00);
+        Send_Byte_Data(0x01);
+        Send_Byte_Data(write_data);
         Stop_Bit();
 
+        _delay((unsigned long)((10)*(20000000/4000.0)));
+
+        Start_Bit();
+        Send_Byte_Data(0b10100000);
+        Send_Byte_Data(0x00);
+        Send_Byte_Data(0x01);
+
+        Start_Bit();
+        Send_Byte_Data(0b10100001);
+        data = Receive_Byte_Data();
+        Send_NACK_Bit();
+        Stop_Bit();
+
+        write_data++;
         _delay((unsigned long)((1000)*(20000000/4000.0)));
     }
 
@@ -1947,6 +1967,12 @@ void Start_Bit() {
     PIR1bits.SSPIF = 0;
 }
 
+void Repeated_Start() {
+    SSPCON2bits.RSEN = 1;
+    while (SSPCON2bits.RSEN);
+    PIR1bits.SSPIF = 0;
+}
+
 void Send_Byte_Data(uint8_t data) {
     SSPBUF = data;
     while (!PIR1bits.SSPIF);
@@ -1957,15 +1983,22 @@ void Send_Byte_Data(uint8_t data) {
     }
 }
 
+uint8_t Receive_Byte_Data() {
+    SSPCON2bits.RCEN = 1;
+    while (!SSPSTATbits.BF);
+    uint8_t data = SSPBUF;
+    return data;
+}
+
 void Send_ACK_Bit() {
-    SSPCON2bits.ACKEN = 1;
     SSPCON2bits.ACKDT = 0;
+    SSPCON2bits.ACKEN = 1;
     while (SSPCON2bits.ACKEN);
 }
 
 void Send_NACK_Bit() {
-    SSPCON2bits.ACKEN = 1;
     SSPCON2bits.ACKDT = 1;
+    SSPCON2bits.ACKEN = 1;
     while (SSPCON2bits.ACKEN);
 }
 
